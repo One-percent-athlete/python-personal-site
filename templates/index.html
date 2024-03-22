@@ -5,7 +5,7 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
-                            <h1>Clean Blog</h1>
+                            <h1>Very Clean Blog</h1>
                             <span class="subheading">A Blog Theme by Start Bootstrap</span>
                         </div>
                     </div>
@@ -18,16 +18,18 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <!-- Post preview-->
 
-                    {% for article in all_articles %}
+                    {% for post in all_posts %}
                     <div class="post-preview">
-                        <a href="{{ url_for('get_post', index=article.id) }}">
-                            <h2 class="post-title">{{ article.title }}</h2>
-                            <h3 class="post-subtitle">{{ article.subtitle }}</h3>
+                        <a href="{{ url_for('show_post', post_id=post.id) }}">
+                            <h2 class="post-title">{{ post.title }}</h2>
+                            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
                         </a>
                         <p class="post-meta">
                             Posted by
-                            <a href="#!">{{ article.author }}</a>
-                            on {{ article.date }}
+                            <a href="#!">{{ post.author }}</a>
+                            on {{ post.date }}
+                            <a type="submit" style="background-color: red;" href="{{ url_for('delete_post', post_id=post.id) }}">
+                                <button type="submit" style="background-color: red;" form="delete-form" data-confirm="Are you sure you want to delete this item?" method="POST">✘</button></a>
                         </p>
                     </div>
                     <!-- Divider-->
@@ -36,7 +38,7 @@
 
 
                     <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{{ url_for('new_post') }}">Create Posts</a></div>
                 </div>
             </div>
         </div>
